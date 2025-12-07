@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecurityGuard - Plugin Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🧩 Plugin Manager</h1>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </header>
+
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="architecture.html">Architecture</a>
+            <a href="plugins.html" class="active">Plugins</a>
+        </nav>
+
+        <main>
+            <section class="card">
+                <h2 id="availablePlugins">Available Plugins</h2>
+                <div class="search-bar">
+                    <input type="text" id="pluginSearch" placeholder="Search plugins...">
+                    <button onclick="refreshPlugins()">Refresh</button>
+                </div>
+                <div id="pluginList" class="plugin-grid">
+                    <!-- Plugins loaded dynamically -->
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 id="installedPlugins">Installed Plugins</h2>
+                <table id="installedTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Version</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="installedPluginsBody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="plugins-ui.js"></script>
+</body>
+
+</html>

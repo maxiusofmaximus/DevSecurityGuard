@@ -1,0 +1,59 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Top Bar -->
+    <sys:String x:Key="AppTitle">DevSecurityGuard</sys:String>
+    <sys:String x:Key="StatusActive">ACTIVO</sys:String>
+    <sys:String x:Key="StatusUpdating">ACTUALIZANDO...</sys:String>
+    <sys:String x:Key="StatusRestarting">REINICIANDO</sys:String>
+    <sys:String x:Key="SettingsBtn">⚙️ Configuración</sys:String>
+
+    <!-- Sections -->
+    <sys:String x:Key="ProtectionOverview">Resumen de Protección</sys:String>
+    <sys:String x:Key="RecentActivity">Actividad Reciente</sys:String>
+    <sys:String x:Key="QuickSettings">Configuración Rápida</sys:String>
+    <sys:String x:Key="ServiceControl">Control del Servicio</sys:String>
+    <sys:String x:Key="DetectionEngines">Motores de Detección</sys:String>
+
+    <!-- Statistics -->
+    <sys:String x:Key="ThreatsBlocked">Amenazas Bloqueadas</sys:String>
+    <sys:String x:Key="PackagesScanned">Paquetes Escaneados</sys:String>
+    <sys:String x:Key="ActiveDetectors">Detectores Activos</sys:String>
+
+    <!-- Settings -->
+    <sys:String x:Key="InterventionMode">Modo de Intervención</sys:String>
+    <sys:String x:Key="ModeAutomatic">🛑 Automático</sys:String>
+    <sys:String x:Key="ModeInteractive">💬 Interactivo</sys:String>
+    <sys:String x:Key="ModeAlert">🔔 Solo Alertas</sys:String>
+    <sys:String x:Key="ForcePnpm">Forzar pnpm (redirigir npm/yarn)</sys:String>
+    <sys:String x:Key="ProtectEnv">Proteger archivos .env</sys:String>
+    <sys:String x:Key="MonitorCredentials">Monitorear credenciales (SSH, nube)</sys:String>
+
+    <!-- Buttons -->
+    <sys:String x:Key="RestartService">🔄 Reiniciar Servicio</sys:String>
+    <sys:String x:Key="Restarting">⏳ Reiniciando...</sys:String>
+    <sys:String x:Key="ViewLogs">📄 Ver Registros</sys:String>
+
+    <!-- Detectors -->
+    <sys:String x:Key="DetectorShaiHulud">🔴 Shai-Hulud</sys:String>
+    <sys:String x:Key="DetectorCredentials">🔑 Robo de Credenciales</sys:String>
+    <sys:String x:Key="DetectorTyposquatting">📝 Typosquatting</sys:String>
+    <sys:String x:Key="DetectorMaliciousScripts">💻 Scripts Maliciosos</sys:String>
+    <sys:String x:Key="DetectorSupplyChain">🔗 Cadena de Suministro</sys:String>
+    <sys:String x:Key="Priority">Prioridad</sys:String>
+
+    <!-- Language -->
+    <sys:String x:Key="Language">Idioma</sys:String>
+    <sys:String x:Key="LanguageEnglish">🇺🇸 English</sys:String>
+    <sys:String x:Key="LanguageSpanish">🇪🇸 Español</sys:String>
+
+    <!-- Activity Messages -->
+    <sys:String x:Key="ServiceStarted">✅ Servicio iniciado correctamente</sys:String>
+    <sys:String x:Key="ServiceRestarted">🔄 Servicio reiniciado correctamente</sys:String>
+    <sys:String x:Key="DetectorsLoaded">✅ Todos los detectores cargados correctamente</sys:String>
+    <sys:String x:Key="ChangedMode">⚙️ Modo de intervención cambiado a</sys:String>
+    <sys:String x:Key="Enabled">HABILITADO</sys:String>
+    <sys:String x:Key="Disabled">DESHABILITADO</sys:String>
+
+</ResourceDictionary>

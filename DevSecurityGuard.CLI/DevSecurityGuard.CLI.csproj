@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.54.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevSecurityGuard.Core\DevSecurityGuard.Core.csproj" />
+    <ProjectReference Include="..\DevSecurityGuard.PluginSystem\DevSecurityGuard.PluginSystem.csproj" />
+  </ItemGroup>
+
+</Project>

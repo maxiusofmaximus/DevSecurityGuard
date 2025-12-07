@@ -1,0 +1,19 @@
+{
+    "id": "example.basic-detector",
+    "name": "Example Basic Detector",
+    "version": "1.0.0",
+    "author": "DevSecurityGuard Team",
+    "description": "Example detector plugin showing the plugin architecture",
+    "type": "Detector",
+    "assemblyPath": "ExampleDetectorPlugin.dll",
+    "entryPoint": "ExampleDetectorPlugin.BasicDetector",
+    "supportedPackageManagers": [
+        "*"
+    ],
+    "priority": 75,
+    "tags": [
+        "example",
+        "basic"
+    ],
+    "license": "MIT"
+}

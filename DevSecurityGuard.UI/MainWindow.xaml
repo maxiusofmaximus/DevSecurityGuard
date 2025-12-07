@@ -1,0 +1,286 @@
+﻿<Window x:Class="DevSecurityGuard.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DevSecurityGuard - Developer Security Dashboard" 
+        Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        Background="#1E1E1E">
+
+    <Window.Resources>
+        <!-- Color Definitions -->
+        <SolidColorBrush x:Key="PrimaryBackground" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="SecondaryBackground" Color="#2D2D30"/>
+        <SolidColorBrush x:Key="TertiaryBackground" Color="#3E3E42"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#0E639C"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#CCCCCC"/>
+        <SolidColorBrush x:Key="SuccessColor" Color="#4EC9B0"/>
+        <SolidColorBrush x:Key="WarningColor" Color="#FFA500"/>
+        <SolidColorBrush x:Key="DangerColor" Color="#F14C4C"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#3E3E42"/>
+
+        <!-- Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1177BB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SecondaryBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <!-- Header Text Style -->
+        <Style x:Key="HeaderText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <!-- Label Style -->
+        <Style x:Key="LabelText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Top Bar -->
+        <Border Background="{StaticResource SecondaryBackground}" 
+                Height="60" 
+                VerticalAlignment="Top"
+                BorderBrush="{StaticResource BorderColor}"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="20,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="🛡️" FontSize="28" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="DevSecurityGuard" 
+                               FontSize="22" 
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextPrimary}"
+                               VerticalAlignment="Center"/>
+                    <Border Background="{StaticResource SuccessColor}" 
+                            CornerRadius="3" 
+                            Padding="8,3" 
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Center">
+                        <TextBlock x:Name="StatusText" Text="ACTIVE" FontSize="11" FontWeight="Bold" Foreground="White"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="v1.0.0" 
+                               Foreground="{StaticResource TextSecondary}" 
+                               FontSize="12" 
+                               VerticalAlignment="Center"
+                               Margin="0,0,20,0"/>
+                    <Button Content="⚙️ Settings" Style="{StaticResource ModernButton}" Click="SettingsButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Margin="0,60,0,0" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="30,20,30,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column: Statistics and Activity -->
+                <StackPanel Grid.Column="0">
+                    <!-- Statistics Cards -->
+                    <TextBlock Style="{StaticResource HeaderText}" Text="Protection Overview"/>
+
+                    <!-- Stats Grid -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Threats Blocked -->
+                        <Border Grid.Column="0" Style="{StaticResource CardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="🚫" FontSize="32" Margin="0,0,0,10"/>
+                                <TextBlock x:Name="ThreatsBlockedText" Text="0" FontSize="36" FontWeight="Bold" Foreground="{StaticResource DangerColor}"/>
+                                <TextBlock Text="Threats Blocked" Foreground="{StaticResource TextSecondary}" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Packages Scanned -->
+                        <Border Grid.Column="2" Style="{StaticResource CardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="📦" FontSize="32" Margin="0,0,0,10"/>
+                                <TextBlock x:Name="PackagesScannedText" Text="0" FontSize="36" FontWeight="Bold" Foreground="{StaticResource AccentColor}"/>
+                                <TextBlock Text="Packages Scanned" Foreground="{StaticResource TextSecondary}" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Detectors Active -->
+                        <Border Grid.Column="4" Style="{StaticResource CardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="🔍" FontSize="32" Margin="0,0,0,10"/>
+                                <TextBlock x:Name="DetectorsActiveText" Text="5" FontSize="36" FontWeight="Bold" Foreground="{StaticResource SuccessColor}"/>
+                                <TextBlock Text="Active Detectors" Foreground="{StaticResource TextSecondary}" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Recent Activity -->
+                    <TextBlock Style="{StaticResource HeaderText}" Text="Recent Activity"/>
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <ListBox x:Name="ActivityListBox" 
+                                     Background="Transparent" 
+                                     BorderThickness="0"
+                                     Foreground="{StaticResource TextPrimary}"
+                                     Height="350"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListBoxItem">
+                                                    <Border Background="Transparent" 
+                                                            BorderBrush="{StaticResource BorderColor}" 
+                                                            BorderThickness="0,0,0,1" 
+                                                            Padding="10"
+                                                            Margin="0,0,0,5">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Right Column: Settings -->
+                <StackPanel Grid.Column="2">
+                    <!-- Protection Settings -->
+                    <TextBlock Style="{StaticResource HeaderText}" Text="Quick Settings"/>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Intervention Mode" Style="{StaticResource LabelText}"/>
+                            <ComboBox x:Name="InterventionModeCombo" 
+                                      Background="{StaticResource TertiaryBackground}"
+                                      Foreground="{StaticResource TextPrimary}"
+                                      BorderBrush="{StaticResource BorderColor}"
+                                      Padding="10"
+                                      Margin="0,0,0,15"
+                                      SelectionChanged="InterventionModeCombo_SelectionChanged">
+                                <ComboBoxItem Content="🛑 Automatic" IsSelected="False"/>
+                                <ComboBoxItem Content="💬 Interactive" IsSelected="True"/>
+                                <ComboBoxItem Content="🔔 Alert Only" IsSelected="False"/>
+                            </ComboBox>
+
+                            <CheckBox x:Name="ForcePnpmCheckbox" 
+                                      Content="Force pnpm (redirect npm/yarn)" 
+                                      Foreground="{StaticResource TextPrimary}"
+                                      IsChecked="True"
+                                      Margin="0,0,0,10"
+                                      Checked="ForcePnpmCheckbox_Changed"
+                                      Unchecked="ForcePnpmCheckbox_Changed"/>
+
+                            <CheckBox x:Name="EnvProtectionCheckbox" 
+                                      Content="Protect .env files" 
+                                      Foreground="{StaticResource TextPrimary}"
+                                      IsChecked="True"
+                                      Margin="0,0,0,10"
+                                      Checked="EnvProtectionCheckbox_Changed"
+                                      Unchecked="EnvProtectionCheckbox_Changed"/>
+
+                            <CheckBox x:Name="CredentialMonitoringCheckbox" 
+                                      Content="Monitor credentials (SSH, cloud)" 
+                                      Foreground="{StaticResource TextPrimary}"
+                                      IsChecked="True"
+                                      Checked="CredentialMonitoringCheckbox_Changed"
+                                      Unchecked="CredentialMonitoringCheckbox_Changed"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Service Control -->
+                    <TextBlock Style="{StaticResource HeaderText}" Text="Service Control"/>
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <Button x:Name="RestartServiceButton" 
+                                    Content="🔄 Restart Service" 
+                                    Style="{StaticResource ModernButton}" 
+                                    Margin="0,0,0,10"
+                                    Click="RestartServiceButton_Click"/>
+                            <Button x:Name="ViewLogsButton" 
+                                    Content="📄 View Logs" 
+                                    Style="{StaticResource ModernButton}"
+                                    Background="{StaticResource TertiaryBackground}"
+                                    Click="ViewLogsButton_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Detector Status -->
+                    <TextBlock Style="{StaticResource HeaderText}" Text="Detection Engines"/>
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,8">
+                                <TextBlock Text="🔴 Shai-Hulud" Foreground="{StaticResource SuccessColor}" FontSize="12"/>
+                                <TextBlock Text="Priority 100" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondary}" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,8">
+                                <TextBlock Text="🔑 Credential Theft" Foreground="{StaticResource SuccessColor}" FontSize="12"/>
+                                <TextBlock Text="Priority 95" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondary}" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,8">
+                                <TextBlock Text="📝 Typosquatting" Foreground="{StaticResource SuccessColor}" FontSize="12"/>
+                                <TextBlock Text="Priority 90" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondary}" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,8">
+                                <TextBlock Text="💻 Malicious Scripts" Foreground="{StaticResource SuccessColor}" FontSize="12"/>
+                                <TextBlock Text="Priority 85" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondary}" FontSize="11"/>
+                            </Grid>
+                            <Grid>
+                                <TextBlock Text="🔗 Supply Chain" Foreground="{StaticResource SuccessColor}" FontSize="12"/>
+                                <TextBlock Text="Priority 80" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondary}" FontSize="11"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

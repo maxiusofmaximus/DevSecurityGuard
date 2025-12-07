@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecurityGuard - Secure Your Code Supply Chain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient-hero: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero {
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.2;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-hero);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -10px var(--accent-glow);
+        }
+
+        /* Stats Grid */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        /* PMs List */
+        .pms-banner {
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 4rem 0;
+            margin: 4rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pm-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .pm-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pm-item span {
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">DevSecurityGuard</div>
+            <a href="https://github.com/maxiusofmaximus/DevSecurityGuard" class="cta-button"
+                style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">GitHub</a>
+        </header>
+
+        <section class="hero">
+            <h1>Secure Your<br>Code Supply Chain</h1>
+            <p>Real-time protection against typosquatting, malicious scripts, and dependency attacks across 8 major
+                ecosystems.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="https://github.com/maxiusofmaximus/DevSecurityGuard" class="cta-button">Download
+                    v2.0</a>
+                <a href="#features" class="cta-button"
+                    style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);">View Features</a>
+            </div>
+        </section>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number">8</span>
+                <span>Package Managers</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span>Local Privacy</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">0ms</span>
+                <span>Latency Impact</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <span>Real-time Watch</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="pms-banner">
+        <div class="container">
+            <h3>Protected Ecosystems</h3>
+            <div class="pm-list">
+                <div class="pm-item">📦 <span>npm</span></div>
+                <div class="pm-item">🐍 <span>pip</span></div>
+                <div class="pm-item">🦀 <span>cargo</span></div>
+                <div class="pm-item">🔷 <span>nuget</span></div>
+                <div class="pm-item">☕ <span>maven</span></div>
+                <div class="pm-item">🤖 <span>gradle</span></div>
+                <div class="pm-item">💎 <span>gem</span></div>
+                <div class="pm-item">🐘 <span>composer</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="features" class="features">
+            <h2 class="section-title">Enterprise-Grade Protection</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Typosquatting Detection</h3>
+                    <p>Instantly detects if you accidentally type "react-dom" instead of "react-domm", preventing
+                        malicious installs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Script Analysis</h3>
+                    <p>Scans package.json lifecycle hooks (preinstall/postinstall) for obfuscated code and shell
+                        attacks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Credential Guard</h3>
+                    <p>Prevents accidental upload of .env files, AWS keys, and SSH tokens to public registries.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Process Monitor</h3>
+                    <p>Hooks into your shell to intercept install commands before they execute, offering a "Safe/Block"
+                        prompt.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Hybrid UI</h3>
+                    <p>Beautiful Windows 11 style Launcher + Web Dashboard for comprehensive threat visualization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Performance First</h3>
+                    <p>Built with .NET 8 for native performance. Minimal resource usage. No Electron bloat in the core
+                        service.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>DevSecurityGuard v2.0 • Created by maxiusofmaximus</p>
+            <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.6;">
+                Licensed under Commercial Restricted License.<br>
+                Free for Personal Evaluation & Educational Use.
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

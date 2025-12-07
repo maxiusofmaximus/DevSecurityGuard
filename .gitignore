@@ -1,0 +1,37 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleasePublic/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Tooling
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+logs/
+*.db
+*.db-shm
+*.db-wal
+.devsecurityguard.json
+threatfeeds/

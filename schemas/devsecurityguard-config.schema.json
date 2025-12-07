@@ -1,0 +1,174 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DevSecurityGuard Configuration",
+    "description": "Configuration schema for DevSecurityGuard",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string",
+            "description": "Config version",
+            "default": "2.0"
+        },
+        "enabled": {
+            "type": "boolean",
+            "description": "Enable/disable security scanning",
+            "default": true
+        },
+        "interventionMode": {
+            "type": "string",
+            "enum": [
+                "interactive",
+                "automatic",
+                "alert"
+            ],
+            "description": "How to handle threats",
+            "default": "interactive"
+        },
+        "packageManagers": {
+            "type": "array",
+            "description": "Package managers to monitor",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "npm",
+                    "pip",
+                    "cargo",
+                    "nuget",
+                    "maven",
+                    "gradle",
+                    "gem",
+                    "composer"
+                ]
+            },
+            "default": [
+                "npm",
+                "pip",
+                "cargo"
+            ]
+        },
+        "exclude": {
+            "type": "array",
+            "description": "Patterns to exclude from scanning",
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "node_modules/**",
+                "venv/**",
+                "*.test.js",
+                "test/**"
+            ]
+        },
+        "detectors": {
+            "type": "object",
+            "description": "Detector-specific settings",
+            "properties": {
+                "typosquatting": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "threshold": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "default": 0.85
+                        }
+                    }
+                },
+                "ml-malware": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "confidence": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "default": 0.75
+                        }
+                    }
+                },
+                "supplyChain": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                }
+            }
+        },
+        "notifications": {
+            "type": "object",
+            "description": "Notification endpoints",
+            "properties": {
+                "slack": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "discord": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        },
+        "whitelist": {
+            "type": "array",
+            "description": "Trusted packages/scopes",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "performance": {
+            "type": "object",
+            "properties": {
+                "cacheEnabled": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "cacheTTL": {
+                    "type": "integer",
+                    "description": "Cache TTL in seconds",
+                    "default": 3600
+                },
+                "parallelScans": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "maxConcurrency": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 4
+                }
+            }
+        },
+        "privacy": {
+            "type": "object",
+            "properties": {
+                "telemetryEnabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "threatFeedEnabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "encryptDatabase": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        }
+    }
+}

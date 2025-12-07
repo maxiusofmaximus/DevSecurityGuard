@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecurityGuard - Developer Security Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="container header-content">
+            <div class="logo-section">
+                <span class="logo-icon">🛡️</span>
+                <h1 class="app-title">DevSecurityGuard</h1>
+                <span class="status-badge status-active">ACTIVE</span>
+            </div>
+            <div class="header-actions">
+                <select class="language-selector" id="language-selector" onchange="changeLanguage(this.value)">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                </select>
+                <span class="version-text">v1.0.0</span>
+                <button class="btn-primary" onclick="openSettings()">⚙️ Settings</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Left Column: Statistics and Activity -->
+                <div class="left-column">
+                    <h2 class="section-title" id="section-title-protection">Protection Overview</h2>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🚫</div>
+                            <div class="stat-value" id="threats-blocked">0</div>
+                            <div class="stat-label" id="stat-label-threats">Threats Blocked</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-value stat-value-blue" id="packages-scanned">0</div>
+                            <div class="stat-label" id="stat-label-packages">Packages Scanned</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🔍</div>
+                            <div class="stat-value stat-value-green" id="detectors-active">5</div>
+                            <div class="stat-label" id="stat-label-detectors">Active Detectors</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <h2 class="section-title" id="section-title-activity">Recent Activity</h2>
+                    <div class="card activity-card">
+                        <div class="activity-list" id="activity-list">
+                            <!-- Activity items will be added by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Settings and Controls -->
+                <div class="right-column">
+                    <h2 class="section-title" id="section-title-settings">Quick Settings</h2>
+
+                    <!-- Settings Card -->
+                    <div class="card">
+                        <label class="form-label" id="label-intervention">Intervention Mode</label>
+                        <select class="form-select" id="intervention-mode" onchange="updateInterventionMode()">
+                            <option value="automatic">🛑 Automatic</option>
+                            <option value="interactive" selected>💬 Interactive</option>
+                            <option value="alert">🔔 Alert Only</option>
+                        </select>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="force-pnpm" checked
+                                    onchange="updateSetting('pnpm', this.checked)">
+                                <span>Force pnpm (redirect npm/yarn)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="env-protection" checked
+                                    onchange="updateSetting('env', this.checked)">
+                                <span>Protect .env files</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="credential-monitoring" checked
+                                    onchange="updateSetting('credentials', this.checked)">
+                                <span>Monitor credentials (SSH, cloud)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Service Control -->
+                    <h2 class="section-title" id="section-title-control">Service Control</h2>
+                    <div class="card">
+                        <button class="btn-primary btn-full" onclick="restartService()">🔄 Restart Service</button>
+                        <button class="btn-secondary btn-full" onclick="viewLogs()">📄 View Logs</button>
+                    </div>
+
+                    <!-- Detector Status -->
+                    <h2 class="section-title" id="section-title-detectors">Detection Engines</h2>
+                    <div class="card detector-list">
+                        <div class="detector-item">
+                            <span class="detector-name" id="detector-name-shai">🔴 Shai-Hulud</span>
+                            <span class="detector-priority">Priority 100</span>
+                        </div>
+                        <div class="detector-item">
+                            <span class="detector-name" id="detector-name-cred">🔑 Credential Theft</span>
+                            <span class="detector-priority">Priority 95</span>
+                        </div>
+                        <div class="detector-item">
+                            <span class="detector-name" id="detector-name-typo">📝 Typosquatting</span>
+                            <span class="detector-priority">Priority 90</span>
+                        </div>
+                        <div class="detector-item">
+                            <span class="detector-name" id="detector-name-script">💻 Malicious Scripts</span>
+                            <span class="detector-priority">Priority 85</span>
+                        </div>
+                        <div class="detector-item">
+                            <span class="detector-name" id="detector-name-supply">🔗 Supply Chain</span>
+                            <span class="detector-priority">Priority 80</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SignalR for real-time updates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="translations.js"></script>
+    <script src="api-client.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

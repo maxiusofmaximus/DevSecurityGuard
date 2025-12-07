@@ -1,0 +1,59 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Top Bar -->
+    <sys:String x:Key="AppTitle">DevSecurityGuard</sys:String>
+    <sys:String x:Key="StatusActive">ACTIVE</sys:String>
+    <sys:String x:Key="StatusUpdating">UPDATING...</sys:String>
+    <sys:String x:Key="StatusRestarting">RESTARTING</sys:String>
+    <sys:String x:Key="SettingsBtn">⚙️ Settings</sys:String>
+
+    <!-- Sections -->
+    <sys:String x:Key="ProtectionOverview">Protection Overview</sys:String>
+    <sys:String x:Key="RecentActivity">Recent Activity</sys:String>
+    <sys:String x:Key="QuickSettings">Quick Settings</sys:String>
+    <sys:String x:Key="ServiceControl">Service Control</sys:String>
+    <sys:String x:Key="DetectionEngines">Detection Engines</sys:String>
+
+    <!-- Statistics -->
+    <sys:String x:Key="ThreatsBlocked">Threats Blocked</sys:String>
+    <sys:String x:Key="PackagesScanned">Packages Scanned</sys:String>
+    <sys:String x:Key="ActiveDetectors">Active Detectors</sys:String>
+
+    <!-- Settings -->
+    <sys:String x:Key="InterventionMode">Intervention Mode</sys:String>
+    <sys:String x:Key="ModeAutomatic">🛑 Automatic</sys:String>
+    <sys:String x:Key="ModeInteractive">💬 Interactive</sys:String>
+    <sys:String x:Key="ModeAlert">🔔 Alert Only</sys:String>
+    <sys:String x:Key="ForcePnpm">Force pnpm (redirect npm/yarn)</sys:String>
+    <sys:String x:Key="ProtectEnv">Protect .env files</sys:String>
+    <sys:String x:Key="MonitorCredentials">Monitor credentials (SSH, cloud)</sys:String>
+
+    <!-- Buttons -->
+    <sys:String x:Key="RestartService">🔄 Restart Service</sys:String>
+    <sys:String x:Key="Restarting">⏳ Restarting...</sys:String>
+    <sys:String x:Key="ViewLogs">📄 View Logs</sys:String>
+
+    <!-- Detectors -->
+    <sys:String x:Key="DetectorShaiHulud">🔴 Shai-Hulud</sys:String>
+    <sys:String x:Key="DetectorCredentials">🔑 Credential Theft</sys:String>
+    <sys:String x:Key="DetectorTyposquatting">📝 Typosquatting</sys:String>
+    <sys:String x:Key="DetectorMaliciousScripts">💻 Malicious Scripts</sys:String>
+    <sys:String x:Key="DetectorSupplyChain">🔗 Supply Chain</sys:String>
+    <sys:String x:Key="Priority">Priority</sys:String>
+
+    <!-- Language -->
+    <sys:String x:Key="Language">Language</sys:String>
+    <sys:String x:Key="LanguageEnglish">🇺🇸 English</sys:String>
+    <sys:String x:Key="LanguageSpanish">🇪🇸 Español</sys:String>
+
+    <!-- Activity Messages -->
+    <sys:String x:Key="ServiceStarted">✅ Service started successfully</sys:String>
+    <sys:String x:Key="ServiceRestarted">🔄 Service restarted successfully</sys:String>
+    <sys:String x:Key="DetectorsLoaded">✅ All detectors loaded successfully</sys:String>
+    <sys:String x:Key="ChangedMode">⚙️ Changed intervention mode to</sys:String>
+    <sys:String x:Key="Enabled">ENABLED</sys:String>
+    <sys:String x:Key="Disabled">DISABLED</sys:String>
+
+</ResourceDictionary>
