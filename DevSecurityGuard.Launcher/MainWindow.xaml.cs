@@ -82,8 +82,14 @@ namespace DevSecurityGuard.Launcher
         {
             try
             {
-                // Navigate up from bin/Release/net8.0-windows/ to solution root
-                var apiPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "DevSecurityGuard.API"));
+                // 1. Try Production Path (API folder next to Launcher)
+                var apiPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "API");
+                
+                // 2. Fallback to Dev Path (up 4 levels)
+                if (!Directory.Exists(apiPath))
+                {
+                    apiPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "DevSecurityGuard.API"));
+                }
                 
                 if (Directory.Exists(apiPath))
                 {
@@ -92,7 +98,7 @@ namespace DevSecurityGuard.Launcher
                         StartInfo = new ProcessStartInfo
                         {
                             FileName = "dotnet",
-                            Arguments = "run --urls=http://localhost:5000",
+                            Arguments = "DevSecurityGuard.API.dll --urls=http://localhost:5000",
                             WorkingDirectory = apiPath,
                             UseShellExecute = false,
                             CreateNoWindow = true,
@@ -100,6 +106,21 @@ namespace DevSecurityGuard.Launcher
                             RedirectStandardError = true
                         }
                     };
+                    
+                    // If in dev mode (source code), we might need "dotnet run" depending on context, 
+                    // but for compiled DLLs 'dotnet DevSecurityGuard.API.dll' is safer.
+                    // Let's adjust arguments based on if we found a DLL or a csproj project folder.
+                    var dllPath = Path.Combine(apiPath, "DevSecurityGuard.API.dll");
+                    if (File.Exists(dllPath))
+                    {
+                         // Production / Published
+                         _apiProcess.StartInfo.Arguments = $"\"{dllPath}\" --urls=http://localhost:5000";
+                    }
+                    else
+                    {
+                        // Development / Source (dotnet run)
+                        _apiProcess.StartInfo.Arguments = "run --urls=http://localhost:5000";
+                    }
 
                     _apiProcess.Start();
                     
@@ -202,7 +223,14 @@ namespace DevSecurityGuard.Launcher
         {
             try
             {
-                var desktopPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "DevSecurityGuard.UI", "DevSecurityGuard.UI.exe");
+                // 1. Try Production Path (UI folder next to Launcher)
+                var desktopPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UI", "DevSecurityGuard.UI.exe");
+
+                // 2. Fallback to Dev Path
+                if (!File.Exists(desktopPath))
+                {
+                     desktopPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "DevSecurityGuard.UI", "DevSecurityGuard.UI.exe");
+                }
                 
                 if (File.Exists(desktopPath))
                 {

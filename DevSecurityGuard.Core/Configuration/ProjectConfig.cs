@@ -7,7 +7,7 @@ namespace DevSecurityGuard.Core.Configuration;
 /// </summary>
 public class ProjectConfig
 {
-    public string Version { get; set; } = "2.0";
+    public string Version { get; set; } = "1.0";
     public bool Enabled { get; set; } = true;
     public string InterventionMode { get; set; } = "interactive";
     public string[] PackageManagers { get; set; } = Array.Empty<string>();

@@ -46,7 +46,7 @@ class Program
                 .LeftJustified()
                 .Color(Color.Blue));
 
-        AnsiConsole.MarkupLine("[dim]Multi-Package-Manager Security Scanner v2.0[/]");
+        AnsiConsole.MarkupLine("[dim]Multi-Package-Manager Security Scanner v1.0[/]");
         AnsiConsole.WriteLine();
     }
 
